@@ -1,0 +1,9 @@
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Ignore generated reports.
+/reports/*
+# but do not ignore .gitkeep file to commit empty reports folder.
+!/reports/.gitkeep
