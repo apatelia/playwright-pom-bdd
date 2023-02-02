@@ -19,3 +19,26 @@ Feature: Products
     Given the user is logged in and on Products page
     When the user clicks Log out from hamburger menu
     Then the user must not be logged out
+
+  @footer @social_media_links
+  Scenario Outline: Social Media links in footer should work
+    Given the user is logged in and on Products page
+    Then "<Social Media>" link in footer should be visible
+    When the user clicks "<Social Media>" link from footer, it should open correct page in a new tab
+
+    Examples: 
+      | Social Media |
+      | Twitter      |
+      | Facebook     |
+      | LinkedIn     |
+
+  @footer @copyright
+  Scenario: Copyright text in footer should be visible
+    Given the user is logged in and on Products page
+    Then copyright text in footer should be visible
+    And the copyright text contents should be correct
+
+  @footer @robot_image
+  Scenario: Robot image in footer should be visible
+    Given the user is logged in and on Products page
+    Then Robot image in footer should be visible
