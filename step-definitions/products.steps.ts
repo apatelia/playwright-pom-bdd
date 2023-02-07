@@ -56,29 +56,20 @@ When('the user clicks {string} link from footer, it should open correct page in 
     switch (socialMedia) {
         case 'Twitter':
             await productsPage.footer.clickTwitterLink();
+            const twitterPage = await newPagePromise;
+            await twitterPage.waitForLoadState();
+            await expect(twitterPage).toHaveURL('https://twitter.com/saucelabs');
             break;
         case 'Facebook':
             await productsPage.footer.clickFacebookLink();
+            const facebookPage = await newPagePromise;
+            await facebookPage.waitForLoadState();
+            await expect(facebookPage).toHaveURL('https://www.facebook.com/saucelabs');
             break;
         case 'LinkedIn':
             await productsPage.footer.clickLinkedInLink();
-            break;
-        default:
-            break;
-    }
-
-    const newPage = await newPagePromise;
-    await newPage.waitForLoadState();
-
-    switch (socialMedia) {
-        case 'Twitter':
-            await expect(newPage).toHaveURL('https://twitter.com/saucelabs');
-            break;
-        case 'Facebook':
-            await expect(newPage).toHaveURL('https://www.facebook.com/saucelabs');
-            break;
-        case 'LinkedIn':
-            await expect(newPage).toHaveURL(/^https:\/\/www\.linkedin\.com\/company\/sauce-labs/);
+            const linkedInPage = await newPagePromise;
+            await expect(linkedInPage).toHaveURL(/^https:\/\/www\.linkedin\.com\/company\/sauce-labs/);
             break;
         default:
             break;
