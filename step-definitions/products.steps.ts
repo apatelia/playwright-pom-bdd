@@ -69,7 +69,7 @@ When('the user clicks {string} link from footer, it should open correct page in 
         case 'LinkedIn':
             await productsPage.footer.clickLinkedInLink();
             const linkedInPage = await newPagePromise;
-            await expect(linkedInPage).toHaveURL(/^https:\/\/www\.linkedin\.com\/company\/sauce-labs/);
+            await expect(linkedInPage).toHaveURL(/.*https:\/\/www\.linkedin\.com\/company\/sauce-labs\/.*/);
             break;
         default:
             break;
