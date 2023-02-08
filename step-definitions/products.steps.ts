@@ -30,7 +30,7 @@ When('the user clicks Log out from hamburger menu', async function () {
     await productsPage.header.doLogout();
 });
 
-Then('the user must not be logged out', async function () {
+Then('the user must be logged out', async function () {
     await expect(loginPage.loginButton).toBeVisible();
 });
 
@@ -50,30 +50,29 @@ Then('{string} link in footer should be visible', async function (link: string) 
     }
 });
 
-When('the user clicks {string} link from footer, it should open correct page in a new tab', async function (socialMedia: string) {
+When('the user clicks {string} link from footer, it should open correct {string} in a new tab', async function (socialMedia: string, url: string) {
     const newPagePromise = page.context().waitForEvent('page');
 
     switch (socialMedia) {
         case 'Twitter':
             await productsPage.footer.clickTwitterLink();
-            const twitterPage = await newPagePromise;
-            await twitterPage.waitForLoadState();
-            await expect(twitterPage).toHaveURL('https://twitter.com/saucelabs');
             break;
         case 'Facebook':
             await productsPage.footer.clickFacebookLink();
-            const facebookPage = await newPagePromise;
-            await facebookPage.waitForLoadState();
-            await expect(facebookPage).toHaveURL('https://www.facebook.com/saucelabs');
             break;
         case 'LinkedIn':
             await productsPage.footer.clickLinkedInLink();
-            const linkedInPage = await newPagePromise;
-            await expect(linkedInPage).toHaveURL(/.*https:\/\/www\.linkedin\.com\/company\/sauce-labs\/.*/);
             break;
         default:
             break;
     }
+
+    const newPage = await newPagePromise;
+    await newPage.waitForLoadState();
+
+    const regexPattern = ".*" + url + ".*";
+    const regex = new RegExp(regexPattern);
+    await expect(newPage).toHaveURL(regex);
 });
 
 Then('copyright text in footer should be visible', async function () {

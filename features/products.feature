@@ -18,19 +18,19 @@ Feature: Products
   Scenario: User should be able to log out
     Given the user is logged in and on Products page
     When the user clicks Log out from hamburger menu
-    Then the user must not be logged out
+    Then the user must be logged out
 
   @footer @social_media_links
   Scenario Outline: Social Media links in footer should work
     Given the user is logged in and on Products page
     Then "<Social Media>" link in footer should be visible
-    When the user clicks "<Social Media>" link from footer, it should open correct page in a new tab
+    When the user clicks "<Social Media>" link from footer, it should open correct "<URL>" in a new tab
 
     Examples: 
-      | Social Media |
-      | Twitter      |
-      | Facebook     |
-      | LinkedIn     |
+      | Social Media | URL |
+      | Twitter      | https://twitter.com/saucelabs |
+      | Facebook     | https://www.facebook.com/saucelabs |
+      | LinkedIn     | https://www.linkedin.com/company/sauce-labs |
 
   @footer @copyright
   Scenario: Copyright text in footer should be visible
