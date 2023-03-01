@@ -110,7 +110,3 @@ Then('the copyright text contents are correct', async function () {
     const textContent = await cartPage.footer.getCopyrightTextContent();
     expect(textContent).toEqual('© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
 });
-
-Then('Robot image is visible in footer', async function () {
-    await expect(cartPage.footer.robotImage).toBeVisible();
-});

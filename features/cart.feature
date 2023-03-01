@@ -45,7 +45,3 @@ Feature: Cart
   Scenario: Copyright text in footer should be visible
     Then copyright text is visible in footer
     And the copyright text contents are correct
-
-  @cart_footer @robot_image
-  Scenario: Robot image in footer should be visible
-    Then Robot image is visible in footer

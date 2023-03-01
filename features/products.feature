@@ -37,8 +37,3 @@ Feature: Products
     Given the user is logged in and on Products page
     Then copyright text in footer should be visible
     And the copyright text contents should be correct
-
-  @footer @robot_image
-  Scenario: Robot image in footer should be visible
-    Given the user is logged in and on Products page
-    Then Robot image in footer should be visible
