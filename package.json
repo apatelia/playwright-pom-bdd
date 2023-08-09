@@ -13,7 +13,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^8.10.0",
     "@cucumber/pretty-formatter": "^1.0.0",
-    "@playwright/test": "^1.30.0",
+    "@playwright/test": "^1.36.2",
     "cucumber-html-reporter": "^5.5.0",
     "ts-node": "^10.9.1"
   }
