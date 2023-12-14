@@ -17,7 +17,7 @@ cd playwright-pom-bdd
 npm install
 ```
 
-4. Run tests. Currently, all tests run in `Chromium` browser only.
+4. Run tests.
 
 ```sh
 # run all the tests/features.
@@ -27,13 +27,13 @@ npm run test
 # You can use Feature file level or test scenario level tags for fine control over execution.
 
 # run all tests with @login tag.
-npx cucumber-js --tags "@login"
+npm run tag "@login"
 
 # run all tests tagged with @cart_footer and @copyright, BOTH tags.
-npx cucumber-js --tags "@cart_footer and @copyright"
+npm run tag "@cart_footer and @copyright"
 
 # run all tests excepts the tests with @login tag.
-npx cucumber-js --tags "not @login"
+npm run tag "not @login"
 ```
 
 5. Generate a nice HTML report.
