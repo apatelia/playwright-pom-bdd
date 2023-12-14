@@ -7,3 +7,6 @@ node_modules/
 /reports/*
 # but do not ignore .gitkeep file to commit empty reports folder.
 !/reports/.gitkeep
+
+# Logs
+/logs/

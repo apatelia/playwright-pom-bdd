@@ -4,6 +4,7 @@ import { CartPage } from "../pages/cart-page";
 import { LoginPage } from "../pages/login-page";
 import { ProductsPage } from "../pages/products-page";
 import * as dotenv from 'dotenv';
+import { LOGGER } from "../utils/logger";
 
 dotenv.config({
     path: './.env'
@@ -23,14 +24,12 @@ BeforeAll(async function () {
     if (process.env.BROWSER) {
         browserName = process.env.BROWSER.toLowerCase()
     } else {
-        console.warn(`\n\nWARNING: Browser setting is not configured. Configure it in ".env" file.`);
-        console.info(`Chromium will be used for this test run.`);
+        LOGGER.warn(`Browser setting is not configured. Configure it in ".env" file.`);
+        LOGGER.warn(`Chromium will be used for this test run.`);
         browserName = "chromium";
     }
 
-    console.log(`\n\nCONFIGURATION:`);
-    console.log(`==============`);
-    console.log(`Browser ==> ${browserName} \n\n`);
+    LOGGER.info(`Browser ==> ${browserName}`);
 });
 
 Before(async function () {
@@ -52,14 +51,16 @@ Before(async function () {
                 break;
             default:
                 // By default, run tests on Chrome.
-                console.error(`Configured browser "${browserName}" is not supported.`);
-                console.info(`Using default "Chromium" browser instead.`);
+                LOGGER.error(`Configured browser "${browserName}" is not supported.`);
+                LOGGER.info(`Using default "Chromium" browser instead.`);
                 browser = await chromium.launch({ headless: process.env.CI ? true : false });
                 break;
         }
     } catch (error) {
-        console.error(`An error occurred while launching "${browserName}" browser.`);
-        console.log(`Launching default "Chromium" browser instead.`);
+        LOGGER.error(`An error occurred while launching "${browserName}" browser.`);
+        LOGGER.debug(`An error occurred while launching "${browserName}" browser.`);
+        LOGGER.debug(error);
+        LOGGER.info(`Launching default "Chromium" browser instead.`);
         browser = await chromium.launch({ headless: process.env.CI ? true : false });
 
         // Reset browser value to the default browser, in order to avoid any further browser launching failures.
@@ -84,8 +85,8 @@ AfterAll(async function () {
     // Warn if browser was not configured.
     // Warning at the end of run is more visible.
     if (!process.env.BROWSER) {
-        console.warn(`\nWARNING: Browser setting is not configured. Configure it in ".env" file.`);
-        console.info(`Chromium was used for this test run.\n`);
+        LOGGER.warn(`Browser setting is not configured. Configure it in ".env" file.`);
+        LOGGER.warn(`Chromium was used for this test run.\n`);
     }
 });
 
