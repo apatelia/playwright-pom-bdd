@@ -17,7 +17,12 @@ cd playwright-pom-bdd
 npm install
 ```
 
-4. Run tests.
+4. Install browsers.
+```sh
+npx playwright install
+```
+
+5. Run tests.
 
 ```sh
 # run all the tests/features.
@@ -36,7 +41,7 @@ npm run tag "@cart_footer and @copyright"
 npm run tag "not @login"
 ```
 
-5. Generate a nice HTML report.
+6. Generate a nice HTML report.
 
 ```sh
 npm run report
